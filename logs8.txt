@@ -1,0 +1,144 @@
+ExeStack:
+ref(int) v;
+new(v,20);
+ref(ref(int)) a;
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+ref(int) v;
+new(v,20);
+ref(ref(int)) a;
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+new(v,20);
+ref(ref(int)) a;
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+v --> (0,int)
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+new(v,20);
+ref(ref(int)) a;
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+v --> (0,int)
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+ref(ref(int)) a;
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20}
+
+ExeStack:
+ref(ref(int)) a;
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20}
+
+ExeStack:
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+a --> (0,ref(int))
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20}
+
+ExeStack:
+new(a,v);
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+a --> (0,ref(int))
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20}
+
+ExeStack:
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+a --> (2,ref(int))
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20, 2=(1,int)}
+
+ExeStack:
+print(*(v));
+print(*(*(a))+5);
+SymTable:
+a --> (2,ref(int))
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20, 2=(1,int)}
+
+ExeStack:
+print(*(*(a))+5);
+SymTable:
+a --> (2,ref(int))
+v --> (1,int)
+Out:
+20
+FileTable:
+Heap:
+{1=20, 2=(1,int)}
+
+ExeStack:
+SymTable:
+a --> (2,ref(int))
+v --> (1,int)
+Out:
+20
+25
+FileTable:
+Heap:
+{1=20, 2=(1,int)}
+

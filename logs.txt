@@ -1,0 +1,170 @@
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(int a;(int b;(a=2+3*5;(b=a+1;print(b)))))
+SymTable:
+Out:
+FileTable:
+

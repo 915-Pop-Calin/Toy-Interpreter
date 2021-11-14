@@ -1,0 +1,118 @@
+ExeStack:
+bool a;
+int b;
+int c;
+a=b==c;
+print(a);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+bool a;
+int b;
+int c;
+a=b==c;
+print(a);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+int b;
+int c;
+a=b==c;
+print(a);
+SymTable:
+a --> false
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+int b;
+int c;
+a=b==c;
+print(a);
+SymTable:
+a --> false
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+int c;
+a=b==c;
+print(a);
+SymTable:
+a --> false
+b --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+int c;
+a=b==c;
+print(a);
+SymTable:
+a --> false
+b --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+a=b==c;
+print(a);
+SymTable:
+a --> false
+b --> 0
+c --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+a=b==c;
+print(a);
+SymTable:
+a --> false
+b --> 0
+c --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+print(a);
+SymTable:
+a --> true
+b --> 0
+c --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ExeStack:
+SymTable:
+a --> true
+b --> 0
+c --> 0
+Out:
+true
+FileTable:
+Heap:
+{}
+
