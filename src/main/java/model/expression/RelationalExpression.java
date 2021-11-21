@@ -5,7 +5,10 @@ import model.adt.MyIHeap;
 import model.exceptions.InvalidOperandException;
 import model.exceptions.InvalidOperandTypesException;
 import model.exceptions.MyException;
+import model.exceptions.TypeCheckException;
+import model.type.BoolType;
 import model.type.IntType;
+import model.type.Type;
 import model.value.BoolValue;
 import model.value.IntValue;
 import model.value.Value;
@@ -48,6 +51,18 @@ public class RelationalExpression implements Expression{
                 throw new InvalidOperandException("invalid operand");
             }
         }
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type type1, type2;
+        type1 = expression1.typeCheck(typeEnv);
+        if (type1 != IntType.INTEGER)
+            throw new TypeCheckException("RELATIONAL EXPRESSION: first operand is not an integer");
+        type2 = expression2.typeCheck(typeEnv);
+        if (type2 != IntType.INTEGER)
+            throw new InvalidOperandTypesException("RELATIONAL EXPRESSION: second operand is not an integer");
+        return BoolType.BOOL;
     }
 
     public enum Operation{

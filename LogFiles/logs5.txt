@@ -1,0 +1,145 @@
+ID:5
+ExeStack:
+str file1;
+file1=test.in;
+str file2;
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+str file1;
+file1=test.in;
+str file2;
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+file1=test.in;
+str file2;
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> 
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+file1=test.in;
+str file2;
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> 
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+str file2;
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+str file2;
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+file2 --> 
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+file2=test.in;
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+file2 --> 
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+file2 --> test.in
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+OpenFile(file1,r);
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+file2 --> test.in
+Out:
+FileTable:
+Heap:
+{}
+
+ID:5
+ExeStack:
+OpenFile(file2,r);
+SymTable:
+file1 --> test.in
+file2 --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@dcf3e99
+Heap:
+{}
+
+model.exceptions.AlreadyOpenedFileException: test.in has already been opened

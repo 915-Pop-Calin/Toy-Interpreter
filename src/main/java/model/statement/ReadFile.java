@@ -1,13 +1,12 @@
 package model.statement;
 
 import model.adt.MyIDictionary;
-import model.exceptions.InvalidFileNameException;
-import model.exceptions.MyException;
-import model.exceptions.UndeclaredVariableException;
-import model.exceptions.WrongTypeOfVariableException;
+import model.adt.MyIMap;
+import model.exceptions.*;
 import model.expression.Expression;
 import model.type.IntType;
 import model.type.StringType;
+import model.type.Type;
 import model.value.IntValue;
 import model.value.StringValue;
 import model.value.Value;
@@ -40,7 +39,7 @@ public final class ReadFile implements IStatement {
 
         if (value.getType() != StringType.STRING)
             throw new InvalidFileNameException(value.getType().toString() + " is not a valid type for filename");
-        MyIDictionary<StringValue, BufferedReader> fileTable = state.getFileTable();
+        MyIMap<StringValue, BufferedReader> fileTable = state.getFileTable();
         StringValue stringValue = (StringValue) value;
         if (!(fileTable.isDefined(stringValue)))
             throw new InvalidFileNameException(stringValue.toString() + " is not a valid file name");
@@ -65,6 +64,17 @@ public final class ReadFile implements IStatement {
         ProgramState newState =  state.setSymbolTable(updatedSymbolTable);
         linkedList.add(newState);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type expressionType = expression.typeCheck(typeEnv);
+        if (expressionType != StringType.STRING)
+            throw new TypeCheckException("READ FILE: file to read from isn't a string");
+        Type variableType = typeEnv.lookup(variableName);
+        if (variableType != IntType.INTEGER)
+            throw new TypeCheckException("READ FILE: variable to read into isn't an integer");
+        return typeEnv;
     }
 
     @Override

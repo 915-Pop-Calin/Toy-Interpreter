@@ -1,0 +1,437 @@
+ID:14
+ExeStack:
+int v;
+int q;
+ref(int) a;
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+int v;
+int q;
+ref(int) a;
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+int q;
+ref(int) a;
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+int q;
+ref(int) a;
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+ref(int) a;
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+q --> 0
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+ref(int) a;
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+q --> 0
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (0,int)
+q --> 0
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+v=10;
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (0,int)
+q --> 0
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (0,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+new(a,22);
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (0,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{}
+
+ID:14
+ExeStack:
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{1=22}
+
+ID:14
+ExeStack:
+if (fork()==0){ (*(a)=30;(v=32;(print(v);(q=*(a);print(q)))))};
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{1=22}
+
+ID:26
+ExeStack:
+*(a)=30;
+v=32;
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{1=22}
+
+ID:14
+ExeStack:
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{1=22}
+
+ID:26
+ExeStack:
+*(a)=30;
+v=32;
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{1=22}
+
+ID:14
+ExeStack:
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+FileTable:
+Heap:
+{1=22}
+
+ID:26
+ExeStack:
+v=32;
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+10
+FileTable:
+Heap:
+{1=30}
+
+ID:14
+ExeStack:
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+10
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+v=32;
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+10
+FileTable:
+Heap:
+{1=30}
+
+ID:14
+ExeStack:
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 10
+Out:
+10
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 32
+Out:
+10
+FileTable:
+Heap:
+{1=30}
+
+ID:14
+ExeStack:
+print(q);
+SymTable:
+a --> (1,int)
+q --> 30
+v --> 10
+Out:
+10
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+print(v);
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 32
+Out:
+10
+30
+FileTable:
+Heap:
+{1=30}
+
+ID:14
+ExeStack:
+SymTable:
+a --> (1,int)
+q --> 30
+v --> 10
+Out:
+10
+30
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 32
+Out:
+10
+30
+32
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+q=*(a);
+print(q);
+SymTable:
+a --> (1,int)
+q --> 0
+v --> 32
+Out:
+10
+30
+32
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+print(q);
+SymTable:
+a --> (1,int)
+q --> 30
+v --> 32
+Out:
+10
+30
+32
+FileTable:
+Heap:
+{1=30}
+
+ID:26
+ExeStack:
+SymTable:
+a --> (1,int)
+q --> 30
+v --> 32
+Out:
+10
+30
+32
+30
+FileTable:
+Heap:
+{1=30}
+

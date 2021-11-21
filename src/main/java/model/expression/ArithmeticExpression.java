@@ -2,11 +2,9 @@ package model.expression;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
-import model.exceptions.DivisionOverflowException;
-import model.exceptions.InvalidOperandException;
-import model.exceptions.InvalidOperandTypesException;
-import model.exceptions.MyException;
+import model.exceptions.*;
 import model.type.IntType;
+import model.type.Type;
 import model.value.IntValue;
 import model.value.Value;
 
@@ -66,6 +64,18 @@ public final class ArithmeticExpression implements Expression{
         }
         else
             throw new InvalidOperandTypesException("first operand is not an integer");
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type type1, type2;
+        type1 = expression1.typeCheck(typeEnv);
+        if (type1 != IntType.INTEGER)
+            throw new TypeCheckException("ARITHMETIC EXPRESSION: first operand is not an integer");
+        type2 = expression2.typeCheck(typeEnv);
+        if (type2 != IntType.INTEGER)
+            throw new InvalidOperandTypesException("ARITHMETIC EXPRESSION: second operand is not an integer");
+        return IntType.INTEGER;
     }
 
     @Override

@@ -3,6 +3,7 @@ package model.expression;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.exceptions.MyException;
+import model.type.Type;
 import model.value.Value;
 
 public final class VariableExpression implements Expression{
@@ -16,6 +17,11 @@ public final class VariableExpression implements Expression{
     public Value evaluate(MyIDictionary<String, Value> table, MyIHeap<Integer, Value> heap) throws MyException {
         // throw
         return table.lookup(id);
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        return typeEnv.lookup(id);
     }
 
     @Override

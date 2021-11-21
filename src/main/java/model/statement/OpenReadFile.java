@@ -1,12 +1,11 @@
 package model.statement;
 
 import model.adt.MyIDictionary;
-import model.exceptions.AlreadyOpenedFileException;
-import model.exceptions.InvalidFileNameException;
-import model.exceptions.MyException;
-import model.exceptions.MyIOException;
+import model.adt.MyIMap;
+import model.exceptions.*;
 import model.expression.Expression;
 import model.type.StringType;
+import model.type.Type;
 import model.value.StringValue;
 import model.value.Value;
 import repository.ProgramState;
@@ -30,7 +29,7 @@ public final class OpenReadFile implements IStatement{
         if (value.getType() != StringType.STRING)
             throw new InvalidFileNameException(value.getType().toString() + " is not a valid type for filename");
         StringValue stringValue = (StringValue) value;
-        MyIDictionary<StringValue, BufferedReader> fileTable = state.getFileTable();
+        MyIMap<StringValue, BufferedReader> fileTable = state.getFileTable();
         if (fileTable.isDefined(stringValue))
             throw new AlreadyOpenedFileException(stringValue.toString() + " has already been opened");
         BufferedReader bufferedReader;
@@ -40,12 +39,18 @@ public final class OpenReadFile implements IStatement{
         catch (IOException ioException){
             throw new MyIOException("opening " + stringValue + " was not possible");
         }
-        MyIDictionary<StringValue, BufferedReader> newFileTable = fileTable.update(stringValue, bufferedReader);
-
+        fileTable.update(stringValue, bufferedReader);
         LinkedList<ProgramState> linkedList = new LinkedList<>();
-        ProgramState newState =  state.setFileTable(newFileTable);
-        linkedList.add(newState);
+        linkedList.add(state);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type expressionType = expression.typeCheck(typeEnv);
+        if (expressionType != StringType.STRING)
+            throw new TypeCheckException("OPEN READ FILE: file to open isn't a string");
+        return typeEnv;
     }
 
     @Override

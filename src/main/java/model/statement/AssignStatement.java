@@ -3,9 +3,7 @@ package model.statement;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.adt.MyIStack;
-import model.exceptions.MyException;
-import model.exceptions.UndeclaredVariableException;
-import model.exceptions.WrongTypeOfVariableException;
+import model.exceptions.*;
 import model.expression.Expression;
 import model.expression.ValueExpression;
 import model.type.Type;
@@ -48,6 +46,15 @@ public final class AssignStatement implements IStatement {
         ProgramState newState =  state.setSymbolTable(newSymbolTable);
         linkedList.add(newState);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type variableType = typeEnv.lookup(id);
+        Type expressionType = expression.typeCheck(typeEnv);
+        if (variableType.equals(expressionType))
+            return typeEnv;
+        throw new TypeCheckException("ASSIGN STATEMENT: right hand side and left hand side have different types");
     }
 
     @Override

@@ -1,0 +1,278 @@
+ID:4
+ExeStack:
+str varf;
+varf=test.in;
+OpenFile(varf,r);
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:4
+ExeStack:
+str varf;
+varf=test.in;
+OpenFile(varf,r);
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:4
+ExeStack:
+varf=test.in;
+OpenFile(varf,r);
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varf --> 
+Out:
+FileTable:
+Heap:
+{}
+
+ID:4
+ExeStack:
+varf=test.in;
+OpenFile(varf,r);
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varf --> 
+Out:
+FileTable:
+Heap:
+{}
+
+ID:4
+ExeStack:
+OpenFile(varf,r);
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varf --> test.in
+Out:
+FileTable:
+Heap:
+{}
+
+ID:4
+ExeStack:
+OpenFile(varf,r);
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varf --> test.in
+Out:
+FileTable:
+Heap:
+{}
+
+ID:4
+ExeStack:
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varf --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+int varc;
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varf --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 0
+varf --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+ReadFile(varf,varc);
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 0
+varf --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 15
+varf --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+print(varc);
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 15
+varf --> test.in
+Out:
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 15
+varf --> test.in
+Out:
+15
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+ReadFile(varf,varc);
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 15
+varf --> test.in
+Out:
+15
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 50
+varf --> test.in
+Out:
+15
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+print(varc);
+CloseFile(varf);
+SymTable:
+varc --> 50
+varf --> test.in
+Out:
+15
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+CloseFile(varf);
+SymTable:
+varc --> 50
+varf --> test.in
+Out:
+15
+50
+FileTable:
+test.in:java.io.BufferedReader@7fbe847c
+Heap:
+{}
+
+ID:4
+ExeStack:
+SymTable:
+varc --> 50
+varf --> test.in
+Out:
+15
+50
+FileTable:
+Heap:
+{}
+

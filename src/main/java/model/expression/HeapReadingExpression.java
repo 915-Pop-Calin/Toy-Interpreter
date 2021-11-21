@@ -2,9 +2,9 @@ package model.expression;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
-import model.exceptions.InvalidOperandException;
-import model.exceptions.MyException;
-import model.exceptions.WrongTypeOfVariableException;
+import model.exceptions.*;
+import model.type.ReferenceType;
+import model.type.Type;
 import model.value.ReferenceValue;
 import model.value.Value;
 
@@ -23,8 +23,17 @@ public final class HeapReadingExpression implements Expression{
 
         int address = referenceValue.getAddress();
         if (!(heap.isDefined(address)))
-            throw new MyException("address is not in use");
+            throw new UnusedAddressException("address is not in use");
         return heap.find(address);
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type type = expression.typeCheck(typeEnv);
+        if (type instanceof ReferenceType referenceType){
+            return referenceType.getInnerType();
+        }
+        throw new TypeCheckException("HEAP READING EXPRESSION: operand is not a reference type");
     }
 
     @Override

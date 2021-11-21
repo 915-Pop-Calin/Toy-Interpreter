@@ -1,0 +1,90 @@
+ID:12
+ExeStack:
+ref(int) v;
+new(v,20);
+new(v,30);
+print(v);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:12
+ExeStack:
+ref(int) v;
+new(v,20);
+new(v,30);
+print(v);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:12
+ExeStack:
+new(v,20);
+new(v,30);
+print(v);
+SymTable:
+v --> (0,int)
+Out:
+FileTable:
+Heap:
+{}
+
+ID:12
+ExeStack:
+new(v,20);
+new(v,30);
+print(v);
+SymTable:
+v --> (0,int)
+Out:
+FileTable:
+Heap:
+{}
+
+ID:12
+ExeStack:
+new(v,30);
+print(v);
+SymTable:
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20}
+
+ID:12
+ExeStack:
+new(v,30);
+print(v);
+SymTable:
+v --> (1,int)
+Out:
+FileTable:
+Heap:
+{1=20}
+
+ID:12
+ExeStack:
+print(v);
+SymTable:
+v --> (2,int)
+Out:
+FileTable:
+Heap:
+{1=20, 2=30}
+
+ID:12
+ExeStack:
+SymTable:
+v --> (2,int)
+Out:
+(2,int)
+FileTable:
+Heap:
+{2=30}
+

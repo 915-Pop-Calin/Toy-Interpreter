@@ -2,9 +2,7 @@ package model.statement;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
-import model.exceptions.MyException;
-import model.exceptions.UndeclaredVariableException;
-import model.exceptions.WrongTypeOfVariableException;
+import model.exceptions.*;
 import model.expression.Expression;
 import model.type.ReferenceType;
 import model.type.Type;
@@ -46,16 +44,24 @@ public final class HeapAllocationStatement implements IStatement{
                     resultType.toString() + " instead");
         MyIHeap<Integer, Value> heap = state.getHeap();
         Integer allocatedPosition = heap.getNextEmpty();
-        MyIHeap<Integer, Value> newHeap = heap.add(result);
+        heap.add(result);
 
         ReferenceValue newReferenceValue = referenceValue.setAddress(allocatedPosition);
         MyIDictionary<String, Value> newSymbolTable = symbolTable.update(variableName, newReferenceValue);
         ProgramState newProgramState = state.setSymbolTable(newSymbolTable);
 
         LinkedList<ProgramState> linkedList = new LinkedList<>();
-        ProgramState newState =  newProgramState.setHeap(newHeap);
-        linkedList.add(newState);
+        linkedList.add(newProgramState);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type variableType = typeEnv.lookup(variableName);
+        Type expressionType = expression.typeCheck(typeEnv);
+        if (!(variableType.equals(new ReferenceType(expressionType))))
+            throw new TypeCheckException("HEAP ALLOCATION STATEMENT: right hand side and left hand side have different types");
+        return typeEnv;
     }
 
     @Override

@@ -1,10 +1,14 @@
 package model.statement;
 
+import model.adt.MyIDictionary;
 import model.adt.MyIStack;
+import model.exceptions.InvalidOperandTypesException;
 import model.exceptions.MyException;
+import model.exceptions.TypeCheckException;
 import model.exceptions.WrongTypeOfVariableException;
 import model.expression.Expression;
 import model.type.BoolType;
+import model.type.Type;
 import model.value.BoolValue;
 import model.value.Value;
 import repository.ProgramState;
@@ -36,6 +40,15 @@ public final class WhileStatement implements IStatement{
         LinkedList<ProgramState> linkedList = new LinkedList<>();
         linkedList.add(state);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type expressionType = expression.typeCheck(typeEnv);
+        if (expressionType != BoolType.BOOL)
+            throw new TypeCheckException("WHILE STATEMENT: the condition does not have the type bool");
+        statement.typeCheck(typeEnv);
+        return typeEnv;
     }
 
     @Override

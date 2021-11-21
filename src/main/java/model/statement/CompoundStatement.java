@@ -1,7 +1,9 @@
 package model.statement;
 
+import model.adt.MyIDictionary;
 import model.adt.MyIStack;
 import model.exceptions.MyException;
+import model.type.Type;
 import repository.ProgramState;
 
 import java.util.LinkedList;
@@ -25,6 +27,11 @@ public final class CompoundStatement implements IStatement {
         ProgramState newState =  state.setExecutionStack(finalStack);
         linkedList.add(newState);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        return second.typeCheck(first.typeCheck(typeEnv));
     }
 
     @Override

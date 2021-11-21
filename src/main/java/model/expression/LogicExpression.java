@@ -5,7 +5,9 @@ import model.adt.MyIHeap;
 import model.exceptions.InvalidOperandException;
 import model.exceptions.InvalidOperandTypesException;
 import model.exceptions.MyException;
+import model.exceptions.TypeCheckException;
 import model.type.BoolType;
+import model.type.Type;
 import model.value.BoolValue;
 import model.value.Value;
 
@@ -53,6 +55,18 @@ public final class LogicExpression implements Expression{
         }
         else
             throw new InvalidOperandTypesException("first operand is not a boolean");
+    }
+
+    @Override
+    public Type typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type type1, type2;
+        type1 = expression1.typeCheck(typeEnv);
+        if (type1 != BoolType.BOOL)
+            throw new TypeCheckException("LOGIC EXPRESSION: first operand is not a boolean");
+        type2 = expression2.typeCheck(typeEnv);
+        if (type2 != BoolType.BOOL)
+            throw new InvalidOperandTypesException("LOGIC EXPRESSION: second operand is not a boolean");
+        return BoolType.BOOL;
     }
 
     @Override

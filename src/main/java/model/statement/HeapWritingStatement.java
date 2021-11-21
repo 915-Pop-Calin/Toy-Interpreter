@@ -2,11 +2,9 @@ package model.statement;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
-import model.exceptions.InvalidOperandException;
-import model.exceptions.MyException;
-import model.exceptions.UndeclaredVariableException;
-import model.exceptions.WrongTypeOfVariableException;
+import model.exceptions.*;
 import model.expression.Expression;
+import model.type.ReferenceType;
 import model.type.Type;
 import model.value.ReferenceValue;
 import model.value.Value;
@@ -39,18 +37,28 @@ public final class HeapWritingStatement implements IStatement{
         int address = referenceValue.getAddress();
         Type locationType = referenceValue.getLocationType();
         if (!(heap.isDefined(address)))
-            throw new MyException(address + " is not defined in the heap");
+            throw new UnusedAddressException(address + " is not defined in the heap");
 
         Value evaluatedValue = expression.evaluate(table, heap);
         if (!(evaluatedValue.getType().equals(locationType)))
-            throw new InvalidOperandException(expression.toString() + " does not evaluate to " + locationType.toString());
+            throw new WrongTypeOfVariableException(expression.toString() + " does not evaluate to " + locationType.toString());
 
-        MyIHeap<Integer, Value> newHeap = heap.update(address, evaluatedValue);
-
+        heap.update(address, evaluatedValue);
         LinkedList<ProgramState> linkedList = new LinkedList<>();
-        ProgramState newState =  state.setHeap(newHeap);
-        linkedList.add(newState);
+        linkedList.add(state);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type expressionType = expression.typeCheck(typeEnv);
+        Type variableType = typeEnv.lookup(variableName);
+        if (!(variableType instanceof ReferenceType referenceType))
+            throw new TypeCheckException("HEAP WRITING STATEMENT: variable is not a reference type");
+        Type wrappedType = referenceType.getInnerType();
+        if (!(expressionType.equals(wrappedType)))
+            throw new InvalidOperandTypesException("HEAP WRITING STATEMENT: the wrapped type is not the same as the expression type");
+        return typeEnv;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package model.statement;
 
 import model.adt.MyIDictionary;
-import model.exceptions.InvalidFileNameException;
-import model.exceptions.MyException;
-import model.exceptions.MyIOException;
+import model.adt.MyIMap;
+import model.exceptions.*;
 import model.expression.Expression;
 import model.type.StringType;
+import model.type.Type;
 import model.value.StringValue;
 import model.value.Value;
 import repository.ProgramState;
@@ -28,7 +28,7 @@ public final class CloseReadFile implements IStatement{
         Value value = expression.evaluate(state.getSymbolTable(), state.getHeap());
         if (value.getType() != StringType.STRING)
             throw new InvalidFileNameException(value.getType().toString() + " is not a valid type for filename");
-        MyIDictionary<StringValue, BufferedReader> fileTable = state.getFileTable();
+        MyIMap<StringValue, BufferedReader> fileTable = state.getFileTable();
 
         StringValue stringValue = (StringValue) value;
         if (!(fileTable.isDefined(stringValue)))
@@ -40,12 +40,19 @@ public final class CloseReadFile implements IStatement{
         catch (IOException ioException){
             throw new MyIOException("closing " + stringValue + " was not possible");
         }
-        MyIDictionary<StringValue, BufferedReader> newFileTable = fileTable.delete(stringValue);
+        fileTable.delete(stringValue);
 
         LinkedList<ProgramState> linkedList = new LinkedList<>();
-        ProgramState newState =  state.setFileTable(newFileTable);
-        linkedList.add(newState);
+        linkedList.add(state);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        Type expressionType = expression.typeCheck(typeEnv);
+        if (expressionType != StringType.STRING)
+            throw new TypeCheckException("CLOSE READ FILE: file to close isn't a string");
+        return typeEnv;
     }
 
     public String toString() {

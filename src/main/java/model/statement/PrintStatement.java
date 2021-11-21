@@ -6,13 +6,14 @@ import model.adt.MyIList;
 import model.exceptions.MyException;
 import model.expression.Expression;
 import model.expression.VariableExpression;
+import model.type.Type;
 import model.value.Value;
 import repository.ProgramState;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public final class                                                                                                                                      PrintStatement implements IStatement {
+public final class PrintStatement implements IStatement {
 
     private final Expression expression;
 
@@ -26,12 +27,17 @@ public final class                                                              
         MyIDictionary<String, Value> symbolTable = state.getSymbolTable();
         MyIHeap<Integer, Value> heap = state.getHeap();
         Value printedValue = expression.evaluate(symbolTable, heap);
-        MyIList<Value> modifiedOut = out.add(printedValue);
+        out.add(printedValue);
 
         LinkedList<ProgramState> linkedList = new LinkedList<>();
-        ProgramState newState =  state.setOut(modifiedOut);
-        linkedList.add(newState);
+        linkedList.add(state);
         return linkedList;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        expression.typeCheck(typeEnv);
+        return typeEnv;
     }
 
     @Override

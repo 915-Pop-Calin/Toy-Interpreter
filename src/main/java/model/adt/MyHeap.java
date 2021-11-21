@@ -5,26 +5,23 @@ import org.pcollections.HashTreePMap;
 import org.pcollections.OrderedPSet;
 import org.pcollections.PMap;
 
-import java.util.AbstractSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public final class MyHeap implements MyIHeap<Integer, Value>{
-    private final OrderedPSet<Integer> emptiedPositions;
-    private final int lastEmptyPosition;
-    private final PMap<Integer, Value> values;
+public class MyHeap implements MyIHeap<Integer, Value>{
+    private Set<Integer> emptiedPositions;
+    private int lastEmptyPosition;
+    private Map<Integer, Value> values;
 
-    public MyHeap(OrderedPSet<Integer> emptiedPositions, int lastEmptyPosition, PMap<Integer, Value> values){
+    public MyHeap(Set<Integer> emptiedPositions, int lastEmptyPosition, Map<Integer, Value> values){
         this.emptiedPositions = emptiedPositions;
         this.lastEmptyPosition = lastEmptyPosition;
         this.values = values;
     }
 
     public MyHeap(){
-        emptiedPositions = OrderedPSet.empty();
+        emptiedPositions = new HashSet<>();
         lastEmptyPosition = 1;
-        values = HashTreePMap.empty();
+        values = new HashMap<>();
     }
 
     @Override
@@ -36,31 +33,27 @@ public final class MyHeap implements MyIHeap<Integer, Value>{
     }
 
     @Override
-    public MyIHeap<Integer, Value> add(Value value) {
+    public void add(Value value) {
         if (emptiedPositions.isEmpty()){
-            PMap<Integer, Value> newValues = values.plus(lastEmptyPosition, value);
-            int newLastEmptyPosition = lastEmptyPosition + 1;
-            return new MyHeap(emptiedPositions, newLastEmptyPosition, newValues);
+            values.put(lastEmptyPosition, value);
+            lastEmptyPosition += 1;
         }
         else{
             int firstEmpty = emptiedPositions.iterator().next();
-            PMap<Integer, Value> newValues = values.plus(firstEmpty, value);
-            OrderedPSet<Integer> newEmptyPositions = emptiedPositions.minus(firstEmpty);
-            return new MyHeap(newEmptyPositions, lastEmptyPosition, newValues);
+            values.put(firstEmpty, value);
+            emptiedPositions.remove(firstEmpty);
         }
     }
 
     @Override
-    public MyIHeap<Integer, Value> remove(Integer key) {
-        PMap<Integer, Value> newValues = values.minus(key);
-        OrderedPSet<Integer> newEmptyPositions = emptiedPositions.plus(key);
-        return new MyHeap(newEmptyPositions, lastEmptyPosition, newValues);
+    public void remove(Integer key) {
+        values.remove(key);
+        emptiedPositions.add(key);
     }
 
     @Override
-    public MyIHeap<Integer, Value> update(Integer key, Value value) {
-        PMap<Integer, Value> newValues = values.plus(key, value);
-        return new MyHeap(emptiedPositions, lastEmptyPosition, newValues);
+    public void update(Integer key, Value value) {
+        values.put(key, value);
     }
 
     @Override
@@ -69,13 +62,8 @@ public final class MyHeap implements MyIHeap<Integer, Value>{
     }
 
     @Override
-    public MyIHeap<Integer, Value> setValues(Map<Integer, Value> values) {
-        Set<Integer> keys = values.keySet();
-        PMap<Integer, Value> newValues = HashTreePMap.empty();
-        for (Integer key: keys){
-            newValues = newValues.plus(key, values.get(key));
-        }
-        return new MyHeap(emptiedPositions, lastEmptyPosition, newValues);
+    public void setValues(Map<Integer, Value> values) {
+        this.values = values;
     }
 
     @Override

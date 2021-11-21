@@ -1,0 +1,64 @@
+ID:1
+ExeStack:
+int v;
+v=3;
+print(v);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:1
+ExeStack:
+int v;
+v=3;
+print(v);
+SymTable:
+Out:
+FileTable:
+Heap:
+{}
+
+ID:1
+ExeStack:
+v=3;
+print(v);
+SymTable:
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:1
+ExeStack:
+v=3;
+print(v);
+SymTable:
+v --> 0
+Out:
+FileTable:
+Heap:
+{}
+
+ID:1
+ExeStack:
+print(v);
+SymTable:
+v --> 3
+Out:
+FileTable:
+Heap:
+{}
+
+ID:1
+ExeStack:
+SymTable:
+v --> 3
+Out:
+3
+FileTable:
+Heap:
+{}
+

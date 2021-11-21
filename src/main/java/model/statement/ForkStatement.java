@@ -1,7 +1,10 @@
 package model.statement;
 
+import model.adt.MyIDictionary;
 import model.adt.MyIStack;
+import model.adt.MyStack;
 import model.exceptions.MyException;
+import model.type.Type;
 import repository.ProgramState;
 
 import java.util.LinkedList;
@@ -16,8 +19,9 @@ public class ForkStatement implements IStatement{
 
     @Override
     public List<ProgramState> execute(ProgramState state) throws MyException {
-        MyIStack<IStatement> newStack = state.getExecutionStack().push(statement);
-        ProgramState newProgramState = new ProgramState(state.getID() + 1, newStack, state.getSymbolTable(), state.getOut(), state.getFileTable(),
+        MyIStack<IStatement> newStack = new MyStack<>();
+        newStack = newStack.push(statement);
+        ProgramState newProgramState = new ProgramState(newStack, state.getSymbolTable(), state.getOut(), state.getFileTable(),
                 state.getOriginalProgram(), state.getHeap());
         LinkedList<ProgramState> linkedList = new LinkedList<>();
         linkedList.add(newProgramState);
@@ -26,7 +30,13 @@ public class ForkStatement implements IStatement{
     }
 
     @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        statement.typeCheck(typeEnv);
+        return typeEnv;
+    }
+
+    @Override
     public String toString() {
-        return "if (fork() == 0){" + statement + "}";
+        return "if (fork()==0){ " + statement + "}";
     }
 }

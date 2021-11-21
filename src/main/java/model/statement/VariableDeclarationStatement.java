@@ -38,6 +38,11 @@ public final class VariableDeclarationStatement implements IStatement {
     }
 
     @Override
+    public MyIDictionary<String, Type> typeCheck(MyIDictionary<String, Type> typeEnv) throws MyException {
+        return typeEnv.update(name, type);
+    }
+
+    @Override
     public String toString() {
         return type + " " + name;
     }

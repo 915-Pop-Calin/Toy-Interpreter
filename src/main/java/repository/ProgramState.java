@@ -18,7 +18,7 @@ public class ProgramState {
     private MyIStack<IStatement> executionStack;
     private final MyIDictionary<String, Value> symbolTable;
     private final MyIList<Value> out;
-    private final MyIDictionary<StringValue, BufferedReader> fileTable;
+    private final MyIMap<StringValue, BufferedReader> fileTable;
     private final IStatement originalProgram;
     private final MyIHeap<Integer, Value> heap;
 
@@ -28,7 +28,7 @@ public class ProgramState {
         executionStack = new MyStack<IStatement>();
         symbolTable = new MyDictionary<String, Value>();
         out = new MyList<Value>();
-        fileTable = new MyDictionary<StringValue, BufferedReader>();
+        fileTable = new MyMap<StringValue, BufferedReader>();
         heap  = new MyHeap();
         originalProgram = null;
     }
@@ -78,28 +78,33 @@ public class ProgramState {
         return new ProgramState(ID, executionStack, symbolTable, out, fileTable, originalProgram, heap);
     }
 
-    public MyIDictionary<StringValue, BufferedReader> getFileTable(){
+    public MyIMap<StringValue, BufferedReader> getFileTable(){
         return fileTable;
-    }
-
-    public ProgramState setFileTable(MyIDictionary<StringValue, BufferedReader> fileTable){
-        return new ProgramState(ID, executionStack, symbolTable, out, fileTable, originalProgram, heap);
     }
 
     public MyIHeap<Integer, Value> getHeap(){
         return heap;
     }
 
-    public ProgramState setHeap(MyIHeap<Integer, Value> heap){
-        return new ProgramState(ID, executionStack, symbolTable, out, fileTable, originalProgram, heap);
-    }
-
     public Integer getID(){
         return ID;
     }
 
+    public ProgramState(MyIStack<IStatement> stack, MyIDictionary<String, Value> symbolTable, MyIList<Value> out,
+                        MyIMap<StringValue, BufferedReader> fileTable, IStatement program, MyIHeap<Integer, Value> heap){
+        this.ID = static_ID;
+        static_ID += 1;
+        this.executionStack = stack;
+        this.symbolTable = symbolTable;
+        this.out = out;
+        this.fileTable = fileTable;
+        this.originalProgram = program;
+        this.heap = heap;
+        stack.push(program);
+    }
+
     public ProgramState(int ID, MyIStack<IStatement> stack, MyIDictionary<String, Value> symbolTable, MyIList<Value> out,
-                        MyIDictionary<StringValue, BufferedReader> fileTable, IStatement program, MyIHeap<Integer, Value> heap){
+                        MyIMap<StringValue, BufferedReader> fileTable, IStatement program, MyIHeap<Integer, Value> heap){
         this.ID = ID;
         this.executionStack = stack;
         this.symbolTable = symbolTable;
