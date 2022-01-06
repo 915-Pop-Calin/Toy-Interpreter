@@ -2,7 +2,10 @@ package model.statement;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIMap;
-import model.exceptions.*;
+import model.exceptions.InvalidFileNameException;
+import model.exceptions.MyException;
+import model.exceptions.MyIOException;
+import model.exceptions.TypeCheckException;
 import model.expression.Expression;
 import model.type.StringType;
 import model.type.Type;

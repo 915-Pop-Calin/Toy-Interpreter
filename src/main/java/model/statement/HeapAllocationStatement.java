@@ -2,7 +2,10 @@ package model.statement;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
-import model.exceptions.*;
+import model.exceptions.MyException;
+import model.exceptions.TypeCheckException;
+import model.exceptions.UndeclaredVariableException;
+import model.exceptions.WrongTypeOfVariableException;
 import model.expression.Expression;
 import model.type.ReferenceType;
 import model.type.Type;

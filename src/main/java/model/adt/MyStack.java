@@ -4,6 +4,10 @@ import model.exceptions.EmptyStackException;
 import model.exceptions.MyException;
 import org.pcollections.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public final class MyStack<type> implements MyIStack<type>{
     private final PStack<type> stack;
 
@@ -43,6 +47,11 @@ public final class MyStack<type> implements MyIStack<type>{
     @Override
     public boolean isEmpty() {
         return stack.isEmpty();
+    }
+
+    @Override
+    public List<type> getItems() {
+        return new ArrayList<>(stack);
     }
 
     @Override

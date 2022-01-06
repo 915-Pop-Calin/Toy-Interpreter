@@ -3,12 +3,7 @@ package model.statement;
 import model.adt.MyIDictionary;
 import model.exceptions.AlreadyExistingVariableException;
 import model.exceptions.MyException;
-import model.exceptions.WrongTypeOfVariableException;
-import model.type.BoolType;
-import model.type.IntType;
 import model.type.Type;
-import model.value.BoolValue;
-import model.value.IntValue;
 import model.value.Value;
 import repository.ProgramState;
 

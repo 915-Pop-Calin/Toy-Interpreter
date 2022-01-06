@@ -1,15 +1,14 @@
 package model.adt;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.pcollections.*;
 
 public final class MyList<type> implements MyIList<type>{
     private final List<type> linkedList;
 
     public MyList(){
-        this.linkedList = new LinkedList<>();
+        this.linkedList = Collections.synchronizedList(new LinkedList<>());
     }
 
     public MyList(List<type> newList){
@@ -19,6 +18,11 @@ public final class MyList<type> implements MyIList<type>{
     @Override
     public void add(type element) {
         linkedList.add(element);
+    }
+
+    @Override
+    public List<type> getContents() {
+        return linkedList;
     }
 
     @Override

@@ -10,10 +10,11 @@ import model.value.Value;
 
 import java.io.BufferedReader;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class ProgramState {
-    private static int static_ID = 1;
+    private static AtomicInteger static_ID = new AtomicInteger(1);
     private final int ID;
     private MyIStack<IStatement> executionStack;
     private final MyIDictionary<String, Value> symbolTable;
@@ -23,8 +24,7 @@ public class ProgramState {
     private final MyIHeap<Integer, Value> heap;
 
     public ProgramState(){
-        ID = static_ID;
-        static_ID += 1;
+        ID = static_ID.getAndIncrement();
         executionStack = new MyStack<IStatement>();
         symbolTable = new MyDictionary<String, Value>();
         out = new MyList<Value>();
@@ -92,8 +92,7 @@ public class ProgramState {
 
     public ProgramState(MyIStack<IStatement> stack, MyIDictionary<String, Value> symbolTable, MyIList<Value> out,
                         MyIMap<StringValue, BufferedReader> fileTable, IStatement program, MyIHeap<Integer, Value> heap){
-        this.ID = static_ID;
-        static_ID += 1;
+        this.ID = static_ID.getAndIncrement();
         this.executionStack = stack;
         this.symbolTable = symbolTable;
         this.out = out;

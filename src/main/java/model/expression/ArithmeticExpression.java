@@ -74,7 +74,7 @@ public final class ArithmeticExpression implements Expression{
             throw new TypeCheckException("ARITHMETIC EXPRESSION: first operand is not an integer");
         type2 = expression2.typeCheck(typeEnv);
         if (type2 != IntType.INTEGER)
-            throw new InvalidOperandTypesException("ARITHMETIC EXPRESSION: second operand is not an integer");
+            throw new TypeCheckException("ARITHMETIC EXPRESSION: second operand is not an integer");
         return IntType.INTEGER;
     }
 

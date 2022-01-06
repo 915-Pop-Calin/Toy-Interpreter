@@ -1,33 +1,26 @@
 package model.adt;
 
 import model.value.Value;
-import org.pcollections.HashTreePMap;
-import org.pcollections.OrderedPSet;
-import org.pcollections.PMap;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyHeap implements MyIHeap<Integer, Value>{
     private Set<Integer> emptiedPositions;
-    private int lastEmptyPosition;
+    private AtomicInteger lastEmptyPosition;
     private Map<Integer, Value> values;
 
-    public MyHeap(Set<Integer> emptiedPositions, int lastEmptyPosition, Map<Integer, Value> values){
-        this.emptiedPositions = emptiedPositions;
-        this.lastEmptyPosition = lastEmptyPosition;
-        this.values = values;
-    }
-
     public MyHeap(){
-        emptiedPositions = new HashSet<>();
-        lastEmptyPosition = 1;
-        values = new HashMap<>();
+        emptiedPositions = Collections.synchronizedSet(new HashSet<>());
+        lastEmptyPosition = new AtomicInteger(1);
+        values = new ConcurrentHashMap<>();
     }
 
     @Override
     public Integer getNextEmpty(){
         if (emptiedPositions.isEmpty())
-            return lastEmptyPosition;
+            return lastEmptyPosition.get();
         else
             return emptiedPositions.iterator().next();
     }
@@ -35,8 +28,8 @@ public class MyHeap implements MyIHeap<Integer, Value>{
     @Override
     public void add(Value value) {
         if (emptiedPositions.isEmpty()){
-            values.put(lastEmptyPosition, value);
-            lastEmptyPosition += 1;
+            values.put(lastEmptyPosition.get(), value);
+            lastEmptyPosition.set(lastEmptyPosition.get() + 1);
         }
         else{
             int firstEmpty = emptiedPositions.iterator().next();
@@ -63,7 +56,7 @@ public class MyHeap implements MyIHeap<Integer, Value>{
 
     @Override
     public void setValues(Map<Integer, Value> values) {
-        this.values = values;
+        this.values = new ConcurrentHashMap<>(values);
     }
 
     @Override

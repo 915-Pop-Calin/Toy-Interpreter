@@ -6,12 +6,10 @@ import model.expression.*;
 import model.type.*;
 import model.value.BoolValue;
 import model.value.IntValue;
-import model.value.ReferenceValue;
 import model.value.StringValue;
 import repository.ProgramState;
 
 import java.util.List;
-import java.util.Vector;
 
 public interface IStatement {
     List<ProgramState> execute(ProgramState state) throws MyException;
@@ -113,23 +111,15 @@ public interface IStatement {
                                             ))))),
 
             new CompoundStatement(new VariableDeclarationStatement("v", IntType.INTEGER),
-                    new CompoundStatement(new VariableDeclarationStatement("q", IntType.INTEGER),
-                            new CompoundStatement(new VariableDeclarationStatement("a", new ReferenceType(IntType.INTEGER)),
-                                    new CompoundStatement(new AssignStatement("v", new ValueExpression(new IntValue(10))),
-                                            new CompoundStatement(new HeapAllocationStatement("a", new ValueExpression(
-                                                    new IntValue(22))), new CompoundStatement(new ForkStatement(
-                                                    new CompoundStatement(new HeapWritingStatement("a",
-                                                            new ValueExpression(new IntValue(30))),
-                                                            new CompoundStatement(new AssignStatement("v",
-                                                                    new ValueExpression(new IntValue(32))),
-                                                                    new CompoundStatement(new PrintStatement(new VariableExpression("v")),
-                                                                            new CompoundStatement(new AssignStatement("q", new HeapReadingExpression(
-                                                                                    new VariableExpression("a"))), new PrintStatement(new VariableExpression("q"))
-                                                                            ))))),
-                                                    new CompoundStatement(new PrintStatement(new VariableExpression("v")),
-                                                            new CompoundStatement(new AssignStatement("q", new HeapReadingExpression(new VariableExpression("a"))),
-                                                                    new PrintStatement(new VariableExpression("q")))))))
-                            ))),
+                    new CompoundStatement(new VariableDeclarationStatement("a", new ReferenceType(IntType.INTEGER)),
+                    new CompoundStatement(new AssignStatement("v", new ValueExpression(new IntValue(10))),
+                    new CompoundStatement(new HeapAllocationStatement("a", new ValueExpression(new IntValue(22))),
+                            new CompoundStatement(new ForkStatement(new CompoundStatement(new HeapWritingStatement("a", new ValueExpression(new IntValue(30))),
+                                    new CompoundStatement(new AssignStatement("v", new ValueExpression(new IntValue(32))),
+                                            new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                                    new PrintStatement(new HeapReadingExpression(new VariableExpression("a"))))))),
+                            new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                    new PrintStatement(new HeapReadingExpression(new VariableExpression("a"))))))))),
 
             new CompoundStatement(new VariableDeclarationStatement("v", StringType.STRING),
                     new CompoundStatement(new AssignStatement("v", new ValueExpression(new StringValue("test.in"))),
@@ -324,7 +314,21 @@ public interface IStatement {
                                                                                                                     new HeapReadingExpression(new VariableExpression("num")), new ValueExpression(new IntValue(1))))))),
                                                                                                     new CompoundStatement(new VariableDeclarationStatement("boolean", BoolType.BOOL),
                                                                                                             new IfStatement(new VariableExpression("boolean"), new PrintStatement(new VariableExpression("boolean")),
-                                                                                                                    new NopStatement())))))))))))))
+                                                                                                                    new NopStatement()))))))))))))),
+
+            new CompoundStatement(new VariableDeclarationStatement("con", new ReferenceType(IntType.INTEGER)),
+                    new CompoundStatement(new HeapAllocationStatement("con", new ValueExpression(new IntValue(69))),
+                            new CompoundStatement(new ForkStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("con")))),
+                                    new PrintStatement(new HeapReadingExpression(new VariableExpression("con")))))),
+
+            new CompoundStatement(new ForkStatement(new CompoundStatement(new ForkStatement(new CompoundStatement(new VariableDeclarationStatement("v",
+                    new ReferenceType(BoolType.BOOL)), new HeapAllocationStatement("v", new ValueExpression(BoolValue.toFrom(true))))),
+                    new CompoundStatement(new ForkStatement(new CompoundStatement(new VariableDeclarationStatement("v", new ReferenceType(IntType.INTEGER)),
+                            new HeapAllocationStatement("v", new ValueExpression(new IntValue(6))))),
+                    new CompoundStatement(new VariableDeclarationStatement("v", new ReferenceType(StringType.STRING)),
+                            new HeapAllocationStatement("v", new ValueExpression(new StringValue("urasc femeile"))))))),
+                    new CompoundStatement(new VariableDeclarationStatement("v", new ReferenceType(IntType.INTEGER)),
+                    new HeapAllocationStatement("v", new ValueExpression(new IntValue(50)))))
     };
     //endregion
 

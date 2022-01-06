@@ -1,14 +1,12 @@
 package controller;
 
-import model.adt.MyDictionary;
-import model.adt.MyIDictionary;
-import model.adt.MyIHeap;
-import model.adt.MyIStack;
+import model.adt.*;
 import model.exceptions.MyException;
 import model.exceptions.MyIOException;
 import model.statement.IStatement;
 import model.type.Type;
 import model.value.ReferenceValue;
+import model.value.StringValue;
 import model.value.Value;
 import repository.IRepository;
 import repository.ProgramState;
@@ -32,13 +30,17 @@ public class Controller {
         displayFlag = true;
     }
 
-    List<ProgramState> removeCompletedPrograms(List<ProgramState> inProgramList){
-        return inProgramList.stream()
+    public List<ProgramState> removeCompletedPrograms(){
+        return repository.getProgramList().stream()
                 .filter(ProgramState::isNotCompleted)
                 .collect(Collectors.toList());
     }
 
-    private void typeCheck() throws MyException{
+    public void setProgramList(List<ProgramState> programList){
+        repository.setProgramList(programList);
+    }
+
+    public void typeCheck() throws MyException{
         MyIDictionary<String, Type> typeEnv = new MyDictionary<>();
         List<ProgramState> programStates = repository.getProgramList();
         if (programStates.size() != 1)
@@ -52,7 +54,12 @@ public class Controller {
         }
     }
 
-    private void oneStepForAllPrograms(List<ProgramState> programStates) throws MyIOException, InterruptedException {
+    public void oneStep() throws Exception{
+        var listOfPrograms = repository.getProgramList();
+        oneStepForAllPrograms(listOfPrograms);
+    }
+
+    public void oneStepForAllPrograms(List<ProgramState> programStates) throws MyException, InterruptedException {
         List<Callable<List<ProgramState>>> callList = programStates.stream()
                 .map((ProgramState program) -> (Callable<List<ProgramState>>) (program::oneStep))
                 .collect(Collectors.toList());
@@ -63,62 +70,56 @@ public class Controller {
                         return future.get();
                     }
                     catch (InterruptedException | ExecutionException exception) {
-                        printErrorsToFile(exception);
-                        return null;
+                        throw new RuntimeException(exception.getMessage());
                     }
                 })
                 .filter(Objects::nonNull)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
         repository.setProgramList(programStates);
-
-        programStates.forEach(program -> {
-            try {
-                repository.logProgramStateExecute(program);
-            } catch (MyException exception) {
-                printErrorsToFile(exception);
-            }
-        });
     }
 
-    private void printErrorsToFile(Exception exception){
-        try (var logFile = new PrintWriter(new BufferedWriter(new FileWriter((repository).getLogFilePath(), true)))){
-            String toStr = exception.getMessage();
-            logFile.println(toStr);
-            logFile.close();
-        }
-        catch (IOException myIOException){
-            System.out.println(myIOException.getMessage());
-        }
+    public ProgramState getProgramStateByID(int ID){
+        for (ProgramState programState : repository.getProgramList())
+            if (programState.getID() == ID)
+                return programState;
+        return null;
     }
 
-    public void allStep() throws MyException, InterruptedException {
-        try {
-            typeCheck();
-        }
-        catch (MyException myException){
-            printErrorsToFile(myException);
-            return;
-        }
-        executor = Executors.newFixedThreadPool(2);
-        List<ProgramState> programList = removeCompletedPrograms(repository.getProgramList());
+    public int getNumberOfPrograms(){
+        return repository.getProgramList().size();
+    }
 
-        programList.forEach(program -> {
-            try {
-                repository.logProgramStateExecute(program);
-            } catch (MyException exception) {
-                printErrorsToFile(exception);
-            }
-        });
+    public MyIHeap<Integer, Value> getHeap(){
+        if (repository.getProgramList().size() == 0)
+            return new MyHeap();
+        return repository.getProgramList().get(0).getHeap();
+    }
 
-        while (programList.size() > 0){
-            MyIHeap<Integer, Value> heap = programList.get(0).getHeap();
-            oneStepForAllPrograms(programList);
-            programList = removeCompletedPrograms(repository.getProgramList());
-            heap.setValues(safeGarbageCollector(programList, heap.getContent()));
-        }
+    public MyIList<Value> getOut() {
+        if (repository.getProgramList().size() == 0)
+            return new MyList<>();
+        return repository.getProgramList().get(0).getOut();
+    }
+
+    public List<Integer> getProgramStateIdentifiers(){
+        return repository.getProgramList().stream()
+                .map(ProgramState::getID)
+                .collect(Collectors.toList());
+    }
+
+    public Set<StringValue> getFileTable(){
+        if (repository.getProgramList().size() == 0)
+            return new HashSet<>();
+        return repository.getProgramList().get(0).getFileTable().getKeys();
+    }
+
+    public void createExecutor(){
+         executor = Executors.newFixedThreadPool(2);
+    }
+
+    public void destroyExecutor(){
         executor.shutdownNow();
-        repository.setProgramList(programList);
     }
 
     private List<Integer> getAddressesFromSymbolTable(Collection<Value> symbolTableValues, Map<Integer, Value> heap){
@@ -141,13 +142,7 @@ public class Controller {
                 }));
     }
 
-    private Map<Integer, Value> unsafeGarbageCollector(List<Integer> symbolTableAddresses, Map<Integer, Value> heap){
-        return heap.entrySet().stream()
-                .filter(e->symbolTableAddresses.contains(e.getKey()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
-
-    private Map<Integer, Value> safeGarbageCollector(List<ProgramState> programStateList, Map<Integer, Value> heap){
+    public Map<Integer, Value> safeGarbageCollector(List<ProgramState> programStateList, Map<Integer, Value> heap){
         List<Integer> addresses = programStateList.stream()
                 .map(program -> getAddressesFromSymbolTable(program.getSymbolTable().getContent().values(), heap))
                 .flatMap(Collection::stream)

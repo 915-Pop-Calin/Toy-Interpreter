@@ -2,7 +2,10 @@ package model.expression;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
-import model.exceptions.*;
+import model.exceptions.InvalidOperandException;
+import model.exceptions.MyException;
+import model.exceptions.TypeCheckException;
+import model.exceptions.UnusedAddressException;
 import model.type.ReferenceType;
 import model.type.Type;
 import model.value.ReferenceValue;

@@ -1,13 +1,16 @@
 package model.adt;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MyMap<key_type, value_type> implements MyIMap<key_type, value_type>{
     private Map<key_type, value_type> map;
 
     public MyMap(){
-        map = new HashMap<>();
+        map = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -28,6 +31,11 @@ public class MyMap<key_type, value_type> implements MyIMap<key_type, value_type>
     @Override
     public void delete(key_type key) {
         map.remove(key);
+    }
+
+    @Override
+    public Set<key_type> getKeys() {
+        return map.keySet();
     }
 
     @Override

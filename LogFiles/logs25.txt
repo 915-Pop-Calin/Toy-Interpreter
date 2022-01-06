@@ -1,1 +1,0 @@
-WHILE STATEMENT: the condition does not have the type bool

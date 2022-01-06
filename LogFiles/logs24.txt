@@ -1,1 +1,0 @@
-HEAP WRITING STATEMENT: the wrapped type is not the same as the expression type

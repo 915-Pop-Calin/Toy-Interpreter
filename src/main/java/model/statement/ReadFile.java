@@ -12,7 +12,6 @@ import model.value.StringValue;
 import model.value.Value;
 import repository.ProgramState;
 
-import javax.lang.model.type.IntersectionType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.LinkedList;

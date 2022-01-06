@@ -32,20 +32,7 @@ public final class Repository implements IRepository{
 
     @Override
     public void setProgramList(List<ProgramState> newProgramStates) {
-            this.programStates = newProgramStates;
-    }
-
-    @Override
-    public void logProgramStateExecute(ProgramState programState) throws MyException {
-        try {
-            var logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
-            String toStr = programState.toString();
-            logFile.println(toStr);
-            logFile.close();
-        }
-        catch (IOException ioException){
-            throw new MyIOException("opening " + logFilePath + " was not possible");
-        }
+        this.programStates = newProgramStates;
     }
 
     public IRepository setProgramState(ProgramState programState){

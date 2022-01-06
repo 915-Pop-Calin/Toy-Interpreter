@@ -1,1 +1,0 @@
-IF STATEMENT: the condition doesn't have the type bool

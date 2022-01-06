@@ -4,7 +4,6 @@ import model.type.IntType;
 import model.type.Type;
 
 
-
 public final class IntValue implements Value{
     private final int value;
 

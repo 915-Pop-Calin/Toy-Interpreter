@@ -1,1 +1,0 @@
-READ FILE: variable to read into isn't an integer

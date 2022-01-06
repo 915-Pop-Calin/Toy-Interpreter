@@ -1,1 +1,0 @@
-CLOSE READ FILE: file to close isn't a string

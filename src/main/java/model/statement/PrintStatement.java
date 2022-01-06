@@ -5,7 +5,6 @@ import model.adt.MyIHeap;
 import model.adt.MyIList;
 import model.exceptions.MyException;
 import model.expression.Expression;
-import model.expression.VariableExpression;
 import model.type.Type;
 import model.value.Value;
 import repository.ProgramState;

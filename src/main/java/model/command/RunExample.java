@@ -1,10 +1,9 @@
+/*
 package model.command;
 
 import controller.Controller;
 import model.exceptions.MyException;
 import model.exceptions.MyIOException;
-
-import java.io.IOException;
 
 public class RunExample extends Command{
     private Controller controller;
@@ -28,3 +27,4 @@ public class RunExample extends Command{
         }
     }
 }
+*/

@@ -2,7 +2,6 @@ package model.statement;
 
 import model.adt.MyIDictionary;
 import model.adt.MyIStack;
-import model.exceptions.InvalidOperandTypesException;
 import model.exceptions.MyException;
 import model.exceptions.TypeCheckException;
 import model.exceptions.WrongTypeOfVariableException;

@@ -2,7 +2,6 @@ package model.statement;
 
 import model.adt.MyIDictionary;
 import model.exceptions.MyException;
-import model.expression.Expression;
 import model.type.Type;
 import repository.ProgramState;
 
